@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Cynosura.Core.Data;
 using Microsoft.EntityFrameworkCore;
@@ -57,6 +58,41 @@ namespace Cynosura.EF
                 Entities.Attach(entity);
                 Context.Entry(entity).State = EntityState.Deleted;
             }
+        }
+
+        public Task<List<TEntity>> ToListAsync(IQueryable<TEntity> queryable)
+        {
+            return queryable.ToListAsync();
+        }
+
+        public Task<TEntity> FirstOrDefaultAsync(IQueryable<TEntity> queryable)
+        {
+            return queryable.FirstOrDefaultAsync();
+        }
+
+        public Task<TEntity> FirstAsync(IQueryable<TEntity> queryable)
+        {
+            return queryable.FirstAsync();
+        }
+
+        public Task<TEntity> SingleOrDefaultAsync(IQueryable<TEntity> queryable)
+        {
+            return queryable.SingleOrDefaultAsync();
+        }
+
+        public Task<TEntity> SingleAsync(IQueryable<TEntity> queryable)
+        {
+            return queryable.SingleAsync();
+        }
+
+        public Task<bool> AnyAsync(IQueryable<TEntity> queryable)
+        {
+            return queryable.AnyAsync();
+        }
+
+        public Task<int> CountAsync(IQueryable<TEntity> queryable)
+        {
+            return queryable.CountAsync();
         }
     }
 }
