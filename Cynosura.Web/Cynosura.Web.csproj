@@ -2,13 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <Version>0.1.3</Version>
+    <Version>0.1.4</Version>
     <Authors>Vassily Ivanov</Authors>
     <Company>Cynosura</Company>
     <Description>Cynosura ASP.NET</Description>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.8.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.1.0-rc1-final" />
   </ItemGroup>
 
