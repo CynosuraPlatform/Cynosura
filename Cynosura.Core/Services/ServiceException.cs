@@ -9,6 +9,7 @@ namespace Cynosura.Core.Services
     {
         public int? ErrorCode { get; }
         public ICollection Errors { get; }
+        public ErrorSeverity Severity { get; set; } = ErrorSeverity.Error;
 
         public ServiceException(int errorCode, string message, ICollection errors) : base(message)
         {
@@ -33,5 +34,11 @@ namespace Cynosura.Core.Services
             ErrorCode = null;
             Errors = errors;
         }
+    }
+
+    public enum ErrorSeverity
+    {
+        Error,
+        Warning
     }
 }
