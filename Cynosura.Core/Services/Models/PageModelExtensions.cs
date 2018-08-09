@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Cynosura.Core.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Cynosura.Core.Services.Models
 {
@@ -22,12 +23,42 @@ namespace Cynosura.Core.Services.Models
                 result.TotalItems = await queryable.CountAsync(entityRepository);
                 result.CurrentPageIndex = pageIndex.Value;
             }
-            else
+            else if (pageIndex == null && pageSize == null)
             {
                 var items = await queryable
                     .ToListAsync(entityRepository);
                 result.PageItems = items;
                 result.TotalItems = items.Count;
+            }
+            else
+            {
+                throw new ArgumentException("Arguments pageIndex and pageSize must be both null or not null");
+            }
+            return result;
+        }
+
+        public static async Task<PageModel<T>> ToPagedListAsync<T>(this IQueryable<T> queryable, int? pageIndex, int? pageSize)
+        {
+            var result = new PageModel<T>();
+            if (pageIndex != null && pageSize != null)
+            {
+                result.PageItems = await queryable
+                    .Skip(pageIndex.Value * pageSize.Value)
+                    .Take(pageSize.Value)
+                    .ToListAsync();
+                result.TotalItems = await queryable.CountAsync();
+                result.CurrentPageIndex = pageIndex.Value;
+            }
+            else if (pageIndex == null && pageSize == null)
+            {
+                var items = await queryable
+                    .ToListAsync();
+                result.PageItems = items;
+                result.TotalItems = items.Count;
+            }
+            else
+            {
+                throw new ArgumentException("Arguments pageIndex and pageSize must be both null or not null");
             }
             return result;
         }
@@ -40,6 +71,17 @@ namespace Cynosura.Core.Services.Models
                 .ToListAsync(entityRepository);
             var mapped = items.Select(mapper.Map<TSrc, TDst>);
             var result = new PageModel<TDst>(mapped, await queryable.CountAsync(entityRepository), pageIndex);
+            return result;
+        }
+
+        public static async Task<PageModel<TDst>> MapToPagedListAsync<TSrc, TDst>(this IQueryable<TSrc> queryable, IMapper mapper, int pageIndex, int pageSize)
+        {
+            var items = await queryable
+                .Skip(pageIndex * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+            var mapped = items.Select(mapper.Map<TSrc, TDst>);
+            var result = new PageModel<TDst>(mapped, await queryable.CountAsync(), pageIndex);
             return result;
         }
 
