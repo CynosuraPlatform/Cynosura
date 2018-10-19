@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
-using Cynosura.Core.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Filters;
 
@@ -11,22 +11,20 @@ namespace Cynosura.Web.Infrastructure
     {
         private const string DefaultErrorMessage = "Error occurred";
         private readonly IHostingEnvironment _env;
+        private readonly IEnumerable<IExceptionHandler> _handlers;
 
-        public ApiExceptionFilterAttribute(IHostingEnvironment env)
+        public ApiExceptionFilterAttribute(IHostingEnvironment env, IEnumerable<IExceptionHandler> handlers)
         {
             _env = env;
+            _handlers = handlers;
         }
 
         public override void OnException(ExceptionContext context)
         {
-            if (context.Exception is ServiceException serviceException)
-            {
-                context.Result = _env.GetBadRequestResult(new BadRequestModel(serviceException.Message, serviceException, serviceException.Errors));
-            }
-            else
-            {
-                context.Result = _env.GetBadRequestResult(new BadRequestModel(DefaultErrorMessage, context.Exception));
-            }
+            var handler = _handlers.FirstOrDefault(f => f.ExceptionType == context.Exception.GetType());
+            context.Result = handler != null
+                ? handler.HandleException(context.Exception)
+                : _env.GetBadRequestResult(new BadRequestModel(DefaultErrorMessage, context.Exception));
             context.ExceptionHandled = true;
         }
     }

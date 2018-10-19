@@ -12,6 +12,7 @@ namespace Cynosura.Web.Autofac
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<ApiExceptionFilterAttribute>();
+            builder.RegisterType<ServiceExceptionHandler>().As<IExceptionHandler>();
             builder.RegisterType<MenuProvider>().As<IMenuProvider>().SingleInstance();
         }
     }
