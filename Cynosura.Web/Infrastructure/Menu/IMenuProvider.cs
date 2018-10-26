@@ -6,6 +6,6 @@ namespace Cynosura.Web.Infrastructure.Menu
 {
     public interface IMenuProvider
     {
-        IList<MenuItem> GetMenuItems();
+        IEnumerable<MenuItem> GetMenuItems();
     }
 }
