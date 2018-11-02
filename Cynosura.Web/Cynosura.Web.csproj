@@ -6,6 +6,7 @@
     <Authors>Vassily Ivanov</Authors>
     <Company>Cynosura</Company>
     <Description>Cynosura ASP.NET</Description>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

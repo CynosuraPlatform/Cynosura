@@ -6,6 +6,7 @@
     <Authors>Vassily Ivanov</Authors>
     <Company>Cynosura</Company>
     <Description>Cynosura Entity Framework data implementation</Description>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
