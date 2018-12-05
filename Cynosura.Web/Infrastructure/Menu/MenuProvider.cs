@@ -7,10 +7,12 @@ namespace Cynosura.Web.Infrastructure.Menu
 {
     public class MenuProvider : IMenuProvider
     {
+        private readonly IServiceProvider _serviceProvider;
         private readonly IEnumerable<MenuItem> _menuItems;
 
-        public MenuProvider()
+        public MenuProvider(IServiceProvider serviceProvider)
         {
+            _serviceProvider = serviceProvider;
             _menuItems = LoadMenuItems();
         }
 
@@ -25,7 +27,7 @@ namespace Cynosura.Web.Infrastructure.Menu
             var modules = AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(s => s.GetTypes())
                 .Where(p => type.IsAssignableFrom(p) && p.IsClass)
-                .Select(t => (IMenuModule) Activator.CreateInstance(t));
+                .Select(t => (IMenuModule) (_serviceProvider.GetService(t) ?? Activator.CreateInstance(t)));
             return modules.SelectMany(s => s.GetMenuItems());
         }
     }
