@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using Cynosura.Core.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,9 +21,9 @@ namespace Cynosura.EF
             DataContext.SaveChanges();
         }
 
-        public async Task CommitAsync()
+        public async Task CommitAsync(CancellationToken cancellationToken = default)
         {
-            await DataContext.SaveChangesAsync();
+            await DataContext.SaveChangesAsync(cancellationToken);
         }
 
         public IDbTransaction BeginTransaction()
