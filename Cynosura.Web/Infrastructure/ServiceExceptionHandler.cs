@@ -24,7 +24,6 @@ namespace Cynosura.Web.Infrastructure
             return _env.GetBadRequestResult(new BadRequestModel(serviceException.Message, serviceException,
                 serviceException.Errors,
                 serviceException.ErrorCode));
-            ;
-        }
+         }
     }
 }
