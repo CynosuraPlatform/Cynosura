@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Cynosura.Core.Data
@@ -14,18 +15,18 @@ namespace Cynosura.Core.Data
 
         void Delete(TEntity entity);
 
-        Task<List<TEntity>> ToListAsync(IQueryable<TEntity> queryable);
+        Task<List<TEntity>> ToListAsync(IQueryable<TEntity> queryable, CancellationToken cancellationToken = default);
 
-        Task<TEntity> FirstOrDefaultAsync(IQueryable<TEntity> queryable);
+        Task<TEntity> FirstOrDefaultAsync(IQueryable<TEntity> queryable, CancellationToken cancellationToken = default);
 
-        Task<TEntity> FirstAsync(IQueryable<TEntity> queryable);
+        Task<TEntity> FirstAsync(IQueryable<TEntity> queryable, CancellationToken cancellationToken = default);
 
-        Task<TEntity> SingleOrDefaultAsync(IQueryable<TEntity> queryable);
+        Task<TEntity> SingleOrDefaultAsync(IQueryable<TEntity> queryable, CancellationToken cancellationToken = default);
 
-        Task<TEntity> SingleAsync(IQueryable<TEntity> queryable);
+        Task<TEntity> SingleAsync(IQueryable<TEntity> queryable, CancellationToken cancellationToken = default);
 
-        Task<bool> AnyAsync(IQueryable<TEntity> queryable);
+        Task<bool> AnyAsync(IQueryable<TEntity> queryable, CancellationToken cancellationToken = default);
 
-        Task<int> CountAsync(IQueryable<TEntity> queryable);
+        Task<int> CountAsync(IQueryable<TEntity> queryable, CancellationToken cancellationToken = default);
     }
 }

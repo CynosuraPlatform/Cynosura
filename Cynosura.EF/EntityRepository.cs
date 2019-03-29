@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Cynosura.Core.Data;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +28,11 @@ namespace Cynosura.EF
         public virtual async Task<TEntity> GetByKeyAsync(params object[] keys)
         {
             return await Entities.FindAsync(keys);
+        }
+
+        public virtual async Task<TEntity> GetByKeyAsync(object[] keys, CancellationToken cancellationToken)
+        {
+            return await Entities.FindAsync(keys, cancellationToken);
         }
 
         public virtual void Add(TEntity entity)
@@ -60,39 +66,39 @@ namespace Cynosura.EF
             }
         }
 
-        public Task<List<TEntity>> ToListAsync(IQueryable<TEntity> queryable)
+        public Task<List<TEntity>> ToListAsync(IQueryable<TEntity> queryable, CancellationToken cancellationToken = default)
         {
-            return queryable.ToListAsync();
+            return queryable.ToListAsync(cancellationToken);
         }
 
-        public Task<TEntity> FirstOrDefaultAsync(IQueryable<TEntity> queryable)
+        public Task<TEntity> FirstOrDefaultAsync(IQueryable<TEntity> queryable, CancellationToken cancellationToken = default)
         {
-            return queryable.FirstOrDefaultAsync();
+            return queryable.FirstOrDefaultAsync(cancellationToken);
         }
 
-        public Task<TEntity> FirstAsync(IQueryable<TEntity> queryable)
+        public Task<TEntity> FirstAsync(IQueryable<TEntity> queryable, CancellationToken cancellationToken = default)
         {
-            return queryable.FirstAsync();
+            return queryable.FirstAsync(cancellationToken);
         }
 
-        public Task<TEntity> SingleOrDefaultAsync(IQueryable<TEntity> queryable)
+        public Task<TEntity> SingleOrDefaultAsync(IQueryable<TEntity> queryable, CancellationToken cancellationToken = default)
         {
-            return queryable.SingleOrDefaultAsync();
+            return queryable.SingleOrDefaultAsync(cancellationToken);
         }
 
-        public Task<TEntity> SingleAsync(IQueryable<TEntity> queryable)
+        public Task<TEntity> SingleAsync(IQueryable<TEntity> queryable, CancellationToken cancellationToken = default)
         {
-            return queryable.SingleAsync();
+            return queryable.SingleAsync(cancellationToken);
         }
 
-        public Task<bool> AnyAsync(IQueryable<TEntity> queryable)
+        public Task<bool> AnyAsync(IQueryable<TEntity> queryable, CancellationToken cancellationToken = default)
         {
-            return queryable.AnyAsync();
+            return queryable.AnyAsync(cancellationToken);
         }
 
-        public Task<int> CountAsync(IQueryable<TEntity> queryable)
+        public Task<int> CountAsync(IQueryable<TEntity> queryable, CancellationToken cancellationToken = default)
         {
-            return queryable.CountAsync();
+            return queryable.CountAsync(cancellationToken);
         }
     }
 }
