@@ -2,19 +2,24 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <Version>0.0.1</Version>
+    <Version>0.1.0</Version>
+    <Authors>Vassily Ivanov</Authors>
+    <Company>Cynosura</Company>
+    <Description>Cynosura Core</Description>
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="5.2.3" />
-    <PackageReference Include="MassTransit.RabbitMQ" Version="5.2.3" />
+    <PackageReference Include="MassTransit" Version="5.3.1" />
+    <PackageReference Include="MassTransit.Autofac" Version="5.3.1" />
+    <PackageReference Include="MassTransit.Extensions.Logging" Version="5.3.1" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="5.3.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.1.1" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="2.1.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.1.1" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="2.1.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Cynosura.Messaging.Abstractions\Cynosura.Messaging.Abstractions.csproj" />
+    <ProjectReference Include="..\Cynosura.Core\Cynosura.Core.csproj" />
   </ItemGroup>
 
 </Project>

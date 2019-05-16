@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cynosura.EF", "Cynosura.EF\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cynosura.Web", "Cynosura.Web\Cynosura.Web.csproj", "{38175552-6EE8-41C6-A7F9-0D1166183D61}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cynosura.Messaging.Abstractions", "Cynosura.Messaging.Abstractions\Cynosura.Messaging.Abstractions.csproj", "{59A05BA3-392E-43D6-9E24-2C774D0461C0}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cynosura.Messaging", "Cynosura.Messaging\Cynosura.Messaging.csproj", "{6BF8DA01-817F-4B1D-8F91-71A584935C4B}"
 EndProject
 Global
@@ -31,10 +29,6 @@ Global
 		{38175552-6EE8-41C6-A7F9-0D1166183D61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38175552-6EE8-41C6-A7F9-0D1166183D61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38175552-6EE8-41C6-A7F9-0D1166183D61}.Release|Any CPU.Build.0 = Release|Any CPU
-		{59A05BA3-392E-43D6-9E24-2C774D0461C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{59A05BA3-392E-43D6-9E24-2C774D0461C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{59A05BA3-392E-43D6-9E24-2C774D0461C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{59A05BA3-392E-43D6-9E24-2C774D0461C0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6BF8DA01-817F-4B1D-8F91-71A584935C4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6BF8DA01-817F-4B1D-8F91-71A584935C4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BF8DA01-817F-4B1D-8F91-71A584935C4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
