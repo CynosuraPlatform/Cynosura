@@ -5,7 +5,8 @@
     <Version>0.1.0</Version>
     <Authors>Vassily Ivanov</Authors>
     <Company>Cynosura</Company>
-    <Description>Cynosura Core</Description>
+    <Description>Cynosura MassTransit Messaging implementation</Description>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
@@ -20,6 +21,10 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cynosura.Core\Cynosura.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE.md" Pack="true" PackagePath="$(PackageLicenseFile)"/>
   </ItemGroup>
 
 </Project>
