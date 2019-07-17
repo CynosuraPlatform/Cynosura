@@ -7,14 +7,14 @@ namespace Cynosura.EF
 {
     public static class ModelBuilderExtensions
     {
-        public static void ApplyAllConfigurations(this ModelBuilder modelBuilder)
+        public static void ApplyAllConfigurations(this ModelBuilder modelBuilder, Assembly[] assemblies)
         {
             var applyConfigurationMethodInfo = modelBuilder
                 .GetType()
                 .GetMethods(BindingFlags.Instance | BindingFlags.Public)
                 .First(m => m.Name.Equals("ApplyConfiguration", StringComparison.OrdinalIgnoreCase));
 
-            var ret = AppDomain.CurrentDomain.GetAssemblies()
+            var ret = assemblies
                 .SelectMany(s => s.GetTypes())
                 .Select(t => (t, i: t.GetInterfaces().FirstOrDefault(i => i.Name.Equals(typeof(IEntityTypeConfiguration<>).Name, StringComparison.Ordinal))))
                 .Where(it => it.i != null)
