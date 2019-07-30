@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Cynosura.Core.Messagiing
+namespace Cynosura.Core.Messaging
 {
     public interface IMessagingService
     {

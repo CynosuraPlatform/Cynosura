@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Autofac;
-using Cynosura.Core.Messagiing;
+using Cynosura.Core.Messaging;
 using MassTransit;
 using MassTransit.AutofacIntegration;
 using MassTransit.RabbitMqTransport;

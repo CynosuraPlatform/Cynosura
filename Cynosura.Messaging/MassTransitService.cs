@@ -7,7 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
 using Autofac;
-using Cynosura.Core.Messagiing;
+using Cynosura.Core.Messaging;
 using GreenPipes.Util;
 using MassTransit;
 using MassTransit.RabbitMqTransport;
