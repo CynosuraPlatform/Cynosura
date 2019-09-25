@@ -19,4 +19,4 @@ steps:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
     nuGetFeedType: 'external'
-    publishFeedCredentials: 'NuGet'
+    publishFeedCredentials: 'Github Package Registry'
