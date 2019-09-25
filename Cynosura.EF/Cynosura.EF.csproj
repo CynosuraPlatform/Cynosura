@@ -7,6 +7,7 @@
     <Company>Cynosura</Company>
     <Description>Cynosura Entity Framework data implementation</Description>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/CynosuraPlatform/Cynosura</PackageProjectUrl>
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
 
