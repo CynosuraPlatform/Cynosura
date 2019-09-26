@@ -10,10 +10,10 @@ namespace Cynosura.Web.Infrastructure
     public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
     {
         private const string DefaultErrorMessage = "Error occurred";
-        private readonly IHostingEnvironment _env;
+        private readonly IWebHostEnvironment _env;
         private readonly IEnumerable<IExceptionHandler> _handlers;
 
-        public ApiExceptionFilterAttribute(IHostingEnvironment env, IEnumerable<IExceptionHandler> handlers)
+        public ApiExceptionFilterAttribute(IWebHostEnvironment env, IEnumerable<IExceptionHandler> handlers)
         {
             _env = env;
             _handlers = handlers;

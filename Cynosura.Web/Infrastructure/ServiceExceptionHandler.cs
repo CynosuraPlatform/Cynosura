@@ -10,10 +10,10 @@ namespace Cynosura.Web.Infrastructure
     /// </summary>
     public class ServiceExceptionHandler: IExceptionHandler
     {
-        private readonly IHostingEnvironment _env;
+        private readonly IWebHostEnvironment _env;
         public Type ExceptionType => typeof(ServiceException);
 
-        public ServiceExceptionHandler(IHostingEnvironment env)
+        public ServiceExceptionHandler(IWebHostEnvironment env)
         {
             _env = env;
         }

@@ -4,12 +4,13 @@ using System.Dynamic;
 using System.Text;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
 
 namespace Cynosura.Web.Infrastructure
 {
     public static class BadRequestResultExtension
     {
-        public static BadRequestObjectResult GetBadRequestResult(this IHostingEnvironment env, BadRequestModel model)
+        public static BadRequestObjectResult GetBadRequestResult(this IWebHostEnvironment env, BadRequestModel model)
         {
             dynamic result = new ExpandoObject();
             result.Message = model.Message;
