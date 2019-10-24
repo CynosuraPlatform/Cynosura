@@ -7,6 +7,11 @@ namespace Cynosura.Web.Infrastructure
 {
     public class BadRequestModel
     {
+        public BadRequestModel()
+        {
+
+        }
+
         public BadRequestModel(string message, Exception exception = null, ICollection errors = null, int? errorCode = null)
         {
             ErrorCode = errorCode;
