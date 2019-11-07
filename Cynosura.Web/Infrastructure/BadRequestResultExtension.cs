@@ -12,7 +12,7 @@ namespace Cynosura.Web.Infrastructure
     {
         public static BadRequestObjectResult GetBadRequestResult(this IWebHostEnvironment env, BadRequestModel model)
         {
-            dynamic result = new ExpandoObject();
+            var result = new BadRequestModel();
             result.Message = model.Message;
             result.ErrorCode = model.ErrorCode;
             result.Errors = model.Errors;
