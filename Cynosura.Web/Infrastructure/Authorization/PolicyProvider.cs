@@ -8,20 +8,13 @@ namespace Cynosura.Web.Infrastructure.Authorization
 {
     public class PolicyProvider : IPolicyProvider
     {
-        private readonly IServiceProvider _serviceProvider;
-
-        public PolicyProvider(IServiceProvider serviceProvider)
-        {
-            _serviceProvider = serviceProvider;
-        }
-
         public void RegisterPolicies(AuthorizationOptions options)
         {
             var type = typeof(IPolicyModule);
             var modules = AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(s => s.GetTypes())
                 .Where(p => type.IsAssignableFrom(p) && p.IsClass)
-                .Select(t => (IPolicyModule)(_serviceProvider.GetService(t) ?? Activator.CreateInstance(t)));
+                .Select(t => (IPolicyModule)Activator.CreateInstance(t));
             foreach (var module in modules)
             {
                 module.RegisterPolicies(options);
