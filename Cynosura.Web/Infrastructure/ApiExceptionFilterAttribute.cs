@@ -24,7 +24,7 @@ namespace Cynosura.Web.Infrastructure
             var handler = _handlers.FirstOrDefault(f => f.ExceptionType == context.Exception.GetType());
             context.Result = handler != null
                 ? handler.HandleException(context.Exception)
-                : _env.GetBadRequestResult(new BadRequestModel(DefaultErrorMessage, context.Exception));
+                : _env.GetServerErrorResult(new BadRequestModel(DefaultErrorMessage, context.Exception));
             context.ExceptionHandled = true;
         }
     }
