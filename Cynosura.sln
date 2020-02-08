@@ -11,6 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cynosura.Web", "Cynosura.We
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cynosura.Messaging", "Cynosura.Messaging\Cynosura.Messaging.csproj", "{6BF8DA01-817F-4B1D-8F91-71A584935C4B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2562515A-4A7A-4745-BB9D-6C9491256168}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cynosura.Web.UnitTests", "Tests\Cynosura.Web.UnitTests\Cynosura.Web.UnitTests.csproj", "{30726531-E5D6-4C59-A8FB-C1DAD5C2300D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,9 +37,16 @@ Global
 		{6BF8DA01-817F-4B1D-8F91-71A584935C4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BF8DA01-817F-4B1D-8F91-71A584935C4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BF8DA01-817F-4B1D-8F91-71A584935C4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30726531-E5D6-4C59-A8FB-C1DAD5C2300D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30726531-E5D6-4C59-A8FB-C1DAD5C2300D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30726531-E5D6-4C59-A8FB-C1DAD5C2300D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30726531-E5D6-4C59-A8FB-C1DAD5C2300D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{30726531-E5D6-4C59-A8FB-C1DAD5C2300D} = {2562515A-4A7A-4745-BB9D-6C9491256168}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {57F6F8FF-12FB-4000-9680-F69ED47DC55A}
