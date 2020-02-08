@@ -48,7 +48,7 @@ namespace Cynosura.Messaging
 
                 configureBus?.Invoke(sbc, context);
 
-                sbc.UseExtensionsLogging(context.Resolve<ILoggerFactory>());
+                sbc.SetLoggerFactory(context.Resolve<ILoggerFactory>());
             });
         }
 
