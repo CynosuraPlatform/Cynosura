@@ -1,6 +1,6 @@
-﻿using Autofac;
-using MassTransit;
+﻿using MassTransit;
 using MassTransit.RabbitMqTransport;
+using System;
 
 namespace Cynosura.Messaging
 {
@@ -13,9 +13,9 @@ namespace Cynosura.Messaging
             _queue = queue;
         }
 
-        public void Configure(IRabbitMqBusFactoryConfigurator configurator, IComponentContext context)
+        public void Configure(IRabbitMqBusFactoryConfigurator configurator, IServiceProvider serviceProvider)
         {
-            configurator.ReceiveEndpoint(_queue, ep => ep.ConfigureConsumer<T>(context));
+            configurator.ReceiveEndpoint(_queue, ep => ep.ConfigureConsumer<T>(serviceProvider));
         }
     }
 }

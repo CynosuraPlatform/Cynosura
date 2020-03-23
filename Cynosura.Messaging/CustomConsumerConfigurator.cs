@@ -1,21 +1,20 @@
 ﻿using System;
-using Autofac;
 using MassTransit.RabbitMqTransport;
 
 namespace Cynosura.Messaging
 {
     public class CustomConsumerConfigurator : IConsumerConfigurator
     {
-        private readonly Action<IRabbitMqBusFactoryConfigurator, IComponentContext> _configureBus;
+        private readonly Action<IRabbitMqBusFactoryConfigurator, IServiceProvider> _configureBus;
 
-        public CustomConsumerConfigurator(Action<IRabbitMqBusFactoryConfigurator, IComponentContext> configureBus)
+        public CustomConsumerConfigurator(Action<IRabbitMqBusFactoryConfigurator, IServiceProvider> configureBus)
         {
             _configureBus = configureBus;
         }
 
-        public void Configure(IRabbitMqBusFactoryConfigurator configurator, IComponentContext context)
+        public void Configure(IRabbitMqBusFactoryConfigurator configurator, IServiceProvider serviceProvider)
         {
-            _configureBus(configurator, context);
+            _configureBus(configurator, serviceProvider);
         }
     }
 }

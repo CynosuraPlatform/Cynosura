@@ -1,5 +1,4 @@
 ﻿using System;
-using Autofac;
 using MassTransit;
 using MassTransit.RabbitMqTransport;
 
@@ -8,20 +7,20 @@ namespace Cynosura.Messaging
     public class EndpointConsumerConfigurator : IConsumerConfigurator
     {
         private readonly string _queue;
-        private readonly Action<IReceiveEndpointConfigurator, IComponentContext> _configureEndpoint;
+        private readonly Action<IReceiveEndpointConfigurator, IServiceProvider> _configureEndpoint;
 
         public EndpointConsumerConfigurator(
             string queue,
-            Action<IReceiveEndpointConfigurator, IComponentContext> configureEndpoint)
+            Action<IReceiveEndpointConfigurator, IServiceProvider> configureEndpoint)
         {
             _queue = queue;
             _configureEndpoint = configureEndpoint;
         }
 
-        public void Configure(IRabbitMqBusFactoryConfigurator configurator, IComponentContext context)
+        public void Configure(IRabbitMqBusFactoryConfigurator configurator, IServiceProvider serviceProvider)
         {
             configurator.ReceiveEndpoint(_queue, ep => {
-                _configureEndpoint(ep, context);
+                _configureEndpoint(ep, serviceProvider);
             });
         }
     }

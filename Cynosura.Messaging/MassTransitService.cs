@@ -1,16 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Security.Authentication;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
-using Autofac;
 using Cynosura.Core.Messaging;
-using GreenPipes.Util;
 using MassTransit;
 using MassTransit.RabbitMqTransport;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
@@ -20,35 +16,36 @@ namespace Cynosura.Messaging
     {
         private readonly ILogger<MassTransitService> _logger;
         private readonly MassTransitServiceOptions _options;
-        private readonly ILifetimeScope _lifetimeScope;
+        private readonly IServiceScope _serviceScope;
         private readonly IBusControl _bus;
 
         public MassTransitService(
-            ILifetimeScope lifetimeScope,
+            IServiceScope serviceScope,
             IBusControl bus,
             IOptions<MassTransitServiceOptions> options,
             ILogger<MassTransitService> logger)
         {
-            _lifetimeScope = lifetimeScope;
+            _serviceScope = serviceScope;
             _bus = bus;
             _logger = logger;
             _options = options.Value;
         }
 
-        public static IBusControl CreateBus(IComponentContext context, Action<IRabbitMqBusFactoryConfigurator, IComponentContext> configureBus = null)
+        public static IBusControl CreateBus(IServiceProvider serviceProvider, Action<IRabbitMqBusFactoryConfigurator, IServiceProvider> configureBus = null)
         {
             return Bus.Factory.CreateUsingRabbitMq(sbc =>
             {
-                var options = context.Resolve<IOptions<MassTransitServiceOptions>>().Value;
+                var options = serviceProvider.GetRequiredService<IOptions<MassTransitServiceOptions>>().Value;
                 var host = sbc.Host(new Uri(options.ConnectionUrl), h =>
                 {
                     h.Username(options.Username);
                     h.Password(options.Password);
                 });
 
-                configureBus?.Invoke(sbc, context);
+                configureBus?.Invoke(sbc, serviceProvider);
 
-                sbc.SetLoggerFactory(context.Resolve<ILoggerFactory>());
+                // TODO: check if required
+                sbc.SetLoggerFactory(serviceProvider.GetRequiredService<ILoggerFactory>());
             });
         }
 
@@ -67,7 +64,7 @@ namespace Cynosura.Messaging
         {
             await RetryHelper.TryAsync(async () =>
             {
-                var bus = CreateBus(_lifetimeScope);
+                var bus = CreateBus(_serviceScope.ServiceProvider);
                 await bus.StartAsync();
                 await bus.StopAsync();
             }, 5, TimeSpan.FromSeconds(10), _logger);
