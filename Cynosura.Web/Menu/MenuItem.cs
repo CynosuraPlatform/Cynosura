@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Cynosura.Web.Infrastructure.Menu
+namespace Cynosura.Web.Menu
 {
     public class MenuItem
     {

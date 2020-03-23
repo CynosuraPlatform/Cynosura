@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Cynosura.Web.Infrastructure.Menu
+namespace Cynosura.Web.Menu
 {
-    public interface IMenuProvider
+    public interface IMenuModule
     {
         IEnumerable<MenuItem> GetMenuItems();
     }

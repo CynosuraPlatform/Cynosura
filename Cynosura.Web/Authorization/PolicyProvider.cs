@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Cynosura.Web.Infrastructure.Authorization
+namespace Cynosura.Web.Authorization
 {
     public class PolicyProvider : IPolicyProvider
     {

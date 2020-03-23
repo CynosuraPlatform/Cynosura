@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Cynosura.Web.Infrastructure.Menu
+namespace Cynosura.Web.Menu
 {
     public class MenuProvider : IMenuProvider
     {

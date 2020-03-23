@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Cynosura.Web.Infrastructure.Authorization
+namespace Cynosura.Web.Authorization
 {
     public interface IPolicyModule
     {
