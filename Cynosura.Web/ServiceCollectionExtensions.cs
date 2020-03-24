@@ -10,7 +10,7 @@ namespace Cynosura.Web
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddCynosuraWeb(IServiceCollection services)
+        public static IServiceCollection AddCynosuraWeb(this IServiceCollection services)
         {
             services.AddTransient<ApiExceptionFilterAttribute>();
             services.AddTransient<IExceptionHandler, ServiceExceptionHandler>();
