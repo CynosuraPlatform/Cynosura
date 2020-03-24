@@ -1,5 +1,6 @@
 ﻿using Cynosura.Core.Data;
 using Cynosura.Core.Messaging;
+using MassTransit.RabbitMqTransport;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +20,30 @@ namespace Cynosura.Messaging.UnitTests
         public void AddCynosuraMessaging_Success()
         {
             var services = new ServiceCollection();
+            Setup(services);
+            services.AddCynosuraMessaging();
+            var provider = services.BuildServiceProvider();
+            var messagingService = provider.GetService<IMessagingService>();
+
+            Assert.NotNull(messagingService);
+        }
+
+        [Fact]
+        public void AddCynosuraMessaging_WithConsumerConfigurator()
+        {
+            var services = new ServiceCollection();
+            Setup(services);
+            var consumerConfiguratorMock = new Mock<IConsumerConfigurator>();
+            services.AddTransient(sp => consumerConfiguratorMock.Object);
+            services.AddCynosuraMessaging();
+            var provider = services.BuildServiceProvider();
+            var messagingService = provider.GetService<IMessagingService>();
+
+            consumerConfiguratorMock.Verify(m => m.Configure(It.IsNotNull<IRabbitMqBusFactoryConfigurator>(), It.IsNotNull<IServiceProvider>()));
+        }
+
+        private void Setup(IServiceCollection services)
+        {
             var optionsMock = new Mock<IOptions<MassTransitServiceOptions>>();
             optionsMock.Setup(m => m.Value).Returns(new MassTransitServiceOptions()
             {
@@ -30,11 +55,6 @@ namespace Cynosura.Messaging.UnitTests
             services.AddSingleton(optionsMock.Object);
             services.AddSingleton<ILoggerFactory, FakeLoggerFactory>();
             services.AddSingleton(typeof(ILogger<>), typeof(FakeLogger<>));
-            services.AddCynosuraMessaging();
-            var provider = services.BuildServiceProvider();
-            var messagingService = provider.GetService<IMessagingService>();
-
-            Assert.NotNull(messagingService);
         }
 
         class FakeLoggerFactory : ILoggerFactory

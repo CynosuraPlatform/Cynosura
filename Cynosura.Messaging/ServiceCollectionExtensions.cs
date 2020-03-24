@@ -28,7 +28,7 @@ namespace Cynosura.Messaging
                 x.AddBus(context => MassTransitService.CreateBus(context, (configurator, sp) =>
                 {
                     configurator.SetLoggerFactory(sp.GetRequiredService<ILoggerFactory>());
-                    var configurators = sp.GetRequiredService<IEnumerable<IConsumerConfigurator>>();
+                    var configurators = sp.GetServices<IConsumerConfigurator>();
                     if (configurators != null)
                     {
                         foreach (var consumerConfigurator in configurators)
