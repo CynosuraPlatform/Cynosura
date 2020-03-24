@@ -13,7 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cynosura.Messaging", "Cynos
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2562515A-4A7A-4745-BB9D-6C9491256168}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cynosura.Web.UnitTests", "Tests\Cynosura.Web.UnitTests\Cynosura.Web.UnitTests.csproj", "{30726531-E5D6-4C59-A8FB-C1DAD5C2300D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cynosura.Web.UnitTests", "Tests\Cynosura.Web.UnitTests\Cynosura.Web.UnitTests.csproj", "{30726531-E5D6-4C59-A8FB-C1DAD5C2300D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cynosura.EF.UnitTests", "Tests\Cynosura.EF.UnitTests\Cynosura.EF.UnitTests.csproj", "{5AD8E6D1-BF28-43D4-B377-B7F7ACD41E6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cynosura.Messaging.UnitTests", "Tests\Cynosura.Messaging.UnitTests\Cynosura.Messaging.UnitTests.csproj", "{EC926672-0E4C-4F47-ADEA-704602777A00}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,12 +45,22 @@ Global
 		{30726531-E5D6-4C59-A8FB-C1DAD5C2300D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30726531-E5D6-4C59-A8FB-C1DAD5C2300D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30726531-E5D6-4C59-A8FB-C1DAD5C2300D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AD8E6D1-BF28-43D4-B377-B7F7ACD41E6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AD8E6D1-BF28-43D4-B377-B7F7ACD41E6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AD8E6D1-BF28-43D4-B377-B7F7ACD41E6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AD8E6D1-BF28-43D4-B377-B7F7ACD41E6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC926672-0E4C-4F47-ADEA-704602777A00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC926672-0E4C-4F47-ADEA-704602777A00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC926672-0E4C-4F47-ADEA-704602777A00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC926672-0E4C-4F47-ADEA-704602777A00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{30726531-E5D6-4C59-A8FB-C1DAD5C2300D} = {2562515A-4A7A-4745-BB9D-6C9491256168}
+		{5AD8E6D1-BF28-43D4-B377-B7F7ACD41E6B} = {2562515A-4A7A-4745-BB9D-6C9491256168}
+		{EC926672-0E4C-4F47-ADEA-704602777A00} = {2562515A-4A7A-4745-BB9D-6C9491256168}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {57F6F8FF-12FB-4000-9680-F69ED47DC55A}

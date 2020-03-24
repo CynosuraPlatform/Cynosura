@@ -16,16 +16,16 @@ namespace Cynosura.Messaging
     {
         private readonly ILogger<MassTransitService> _logger;
         private readonly MassTransitServiceOptions _options;
-        private readonly IServiceScope _serviceScope;
+        private readonly IServiceProvider _serviceProvider;
         private readonly IBusControl _bus;
 
         public MassTransitService(
-            IServiceScope serviceScope,
+            IServiceProvider serviceProvider,
             IBusControl bus,
             IOptions<MassTransitServiceOptions> options,
             ILogger<MassTransitService> logger)
         {
-            _serviceScope = serviceScope;
+            _serviceProvider = serviceProvider;
             _bus = bus;
             _logger = logger;
             _options = options.Value;
@@ -43,9 +43,6 @@ namespace Cynosura.Messaging
                 });
 
                 configureBus?.Invoke(sbc, serviceProvider);
-
-                // TODO: check if required
-                sbc.SetLoggerFactory(serviceProvider.GetRequiredService<ILoggerFactory>());
             });
         }
 
@@ -64,7 +61,7 @@ namespace Cynosura.Messaging
         {
             await RetryHelper.TryAsync(async () =>
             {
-                var bus = CreateBus(_serviceScope.ServiceProvider);
+                var bus = CreateBus(_serviceProvider);
                 await bus.StartAsync();
                 await bus.StopAsync();
             }, 5, TimeSpan.FromSeconds(10), _logger);
