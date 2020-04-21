@@ -1,5 +1,6 @@
 ﻿using Cynosura.Core.Data;
 using Microsoft.EntityFrameworkCore.Storage;
+using System.Threading.Tasks;
 
 namespace Cynosura.EF
 {
@@ -22,9 +23,19 @@ namespace Cynosura.EF
             _dbContextTransaction.Commit();
         }
 
+        public Task CommitAsync()
+        {
+            return _dbContextTransaction.CommitAsync();
+        }
+
         public void Rollback()
         {
             _dbContextTransaction.Rollback();
+        }
+
+        public Task RollbackAsync()
+        {
+            return _dbContextTransaction.RollbackAsync();
         }
     }
 }
