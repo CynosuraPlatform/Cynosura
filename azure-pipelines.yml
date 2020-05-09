@@ -27,7 +27,6 @@ steps:
 
 - task: NuGetCommand@2
   displayName: nuget push
-  enabled: false
   inputs:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
