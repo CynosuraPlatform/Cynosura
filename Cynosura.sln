@@ -15,9 +15,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2562515A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cynosura.Web.UnitTests", "Tests\Cynosura.Web.UnitTests\Cynosura.Web.UnitTests.csproj", "{30726531-E5D6-4C59-A8FB-C1DAD5C2300D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cynosura.EF.UnitTests", "Tests\Cynosura.EF.UnitTests\Cynosura.EF.UnitTests.csproj", "{5AD8E6D1-BF28-43D4-B377-B7F7ACD41E6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cynosura.EF.UnitTests", "Tests\Cynosura.EF.UnitTests\Cynosura.EF.UnitTests.csproj", "{5AD8E6D1-BF28-43D4-B377-B7F7ACD41E6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cynosura.Messaging.UnitTests", "Tests\Cynosura.Messaging.UnitTests\Cynosura.Messaging.UnitTests.csproj", "{EC926672-0E4C-4F47-ADEA-704602777A00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cynosura.Messaging.UnitTests", "Tests\Cynosura.Messaging.UnitTests\Cynosura.Messaging.UnitTests.csproj", "{EC926672-0E4C-4F47-ADEA-704602777A00}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7EFC26F6-C21A-462A-B78E-72F91A2DD2E0}"
+	ProjectSection(SolutionItems) = preProject
+		azure-pipelines.yml = azure-pipelines.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
