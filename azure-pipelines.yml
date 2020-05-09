@@ -21,6 +21,10 @@ steps:
     versioningScheme: 'off'
     buildProperties: 'PackageVersion=$(Build.BuildNumber)'
 
+- task: NuGetToolInstaller@1
+  inputs:
+    versionSpec: 
+
 - task: NuGetCommand@2
   displayName: nuget push
   enabled: false
