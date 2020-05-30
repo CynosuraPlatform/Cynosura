@@ -1,5 +1,5 @@
-﻿using MassTransit.RabbitMqTransport;
-using System;
+﻿using System;
+using MassTransit.RabbitMqTransport;
 
 namespace Cynosura.Messaging
 {

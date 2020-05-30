@@ -1,7 +1,7 @@
 ﻿using System;
-using Cynosura.Core.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Cynosura.Core.Services;
 
 namespace Cynosura.Web.Infrastructure
 {

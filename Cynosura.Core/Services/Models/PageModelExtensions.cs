@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using Cynosura.Core.Data;
 using Microsoft.EntityFrameworkCore;
+using Cynosura.Core.Data;
 
 namespace Cynosura.Core.Services.Models
 {

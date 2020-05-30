@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
-using Cynosura.Core.Messaging;
 using MassTransit;
 using MassTransit.RabbitMqTransport;
 using MassTransit.ExtensionsDependencyInjectionIntegration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Cynosura.Core.Messaging;
 
 namespace Cynosura.Messaging
 {

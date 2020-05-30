@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Extensions.DependencyInjection;
 using Cynosura.Web.Infrastructure;
 using Cynosura.Web.Authorization;
 using Cynosura.Web.Menu;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Cynosura.Web
 {

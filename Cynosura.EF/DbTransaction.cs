@@ -1,6 +1,6 @@
-﻿using Cynosura.Core.Data;
+﻿using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.Storage;
-using System.Threading.Tasks;
+using Cynosura.Core.Data;
 
 namespace Cynosura.EF
 {

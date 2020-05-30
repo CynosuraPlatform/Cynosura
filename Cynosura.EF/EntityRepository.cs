@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Cynosura.Core.Data;
 using Microsoft.EntityFrameworkCore;
+using Cynosura.Core.Data;
 
 namespace Cynosura.EF
 {

@@ -1,9 +1,9 @@
-﻿using Cynosura.Core.Data;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Cynosura.Core.Data;
 
 namespace Cynosura.EF
 {
