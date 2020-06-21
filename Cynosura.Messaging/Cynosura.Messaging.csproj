@@ -15,10 +15,10 @@
     <PackageReference Include="MassTransit" Version="6.2.3" />
     <PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="6.2.3" />
     <PackageReference Include="MassTransit.RabbitMQ" Version="6.2.3" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.5" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.5" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.5" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.1.5" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cynosura.Core\Cynosura.Core.csproj" />
