@@ -64,14 +64,14 @@ namespace Cynosura.Core.Services.Models
             return result;
         }
 
-        public static async Task<PageModel<TDst>> MapToPagedListAsync<TSrc, TDst>(this IQueryable<TSrc> queryable, IEntityRepository<TSrc> entityRepository,  IMapper mapper, int pageIndex, int pageSize, CancellationToken cancellationToken = default)
+        public static async Task<PageModel<TDst>> MapToPagedListAsync<TSrc, TDst>(this IQueryable<TSrc> queryable, IEntityRepository<TSrc> entityRepository, IMapper mapper, int pageIndex, int pageSize, CancellationToken cancellationToken = default)
         {
             var items = await queryable
                 .Skip(pageIndex * pageSize)
                 .Take(pageSize)
                 .ToListAsync(entityRepository, cancellationToken);
             var totalItems = await queryable.CountAsync(entityRepository, cancellationToken);
-            var mapped = items.Select(mapper.Map<TSrc, TDst>);
+            var mapped = items.Select(mapper.Map<TSrc, TDst>).ToList();
             var result = new PageModel<TDst>(mapped, totalItems, pageIndex);
             return result;
         }
@@ -83,14 +83,14 @@ namespace Cynosura.Core.Services.Models
                 .Take(pageSize)
                 .ToListAsync(cancellationToken);
             var totalItems = await queryable.CountAsync(cancellationToken);
-            var mapped = items.Select(mapper.Map<TSrc, TDst>);
+            var mapped = items.Select(mapper.Map<TSrc, TDst>).ToList();
             var result = new PageModel<TDst>(mapped, totalItems, pageIndex);
             return result;
         }
 
         public static PageModel<TDst> Map<TSrc, TDst>(this PageModel<TSrc> model, IMapper mapper)
         {
-            return new PageModel<TDst>(model.PageItems.Select(mapper.Map<TSrc, TDst>), model.TotalItems, model.CurrentPageIndex);
+            return new PageModel<TDst>(model.PageItems.Select(mapper.Map<TSrc, TDst>).ToList(), model.TotalItems, model.CurrentPageIndex);
         }
     }
 }

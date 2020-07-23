@@ -6,7 +6,7 @@ namespace Cynosura.Core.Services.Models
 {
     public class PageModel<T>
     {
-        public IEnumerable<T> PageItems { get; set; }
+        public List<T> PageItems { get; set; }
         public int TotalItems { get; set; }
         public int CurrentPageIndex { get; set; }
 
@@ -15,7 +15,7 @@ namespace Cynosura.Core.Services.Models
 
         }
 
-        public PageModel(IEnumerable<T> pageItems, int totalItems, int currentPageIndex)
+        public PageModel(List<T> pageItems, int totalItems, int currentPageIndex)
         {
             PageItems = pageItems;
             TotalItems = totalItems;
