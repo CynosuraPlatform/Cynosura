@@ -9,7 +9,8 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/CynosuraPlatform/Cynosura</PackageProjectUrl>
     <RepositoryUrl>https://github.com/CynosuraPlatform/Cynosura</RepositoryUrl>
-    <LangVersion>7.1</LangVersion>    
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MassTransit" Version="6.2.3" />

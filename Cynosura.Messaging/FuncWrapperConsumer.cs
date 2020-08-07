@@ -7,9 +7,9 @@ namespace Cynosura.Messaging
     public class FuncWrapperConsumer<T> : IConsumer<T> where T : class
     {
         private readonly Func<T, ConsumeContext<T>, Task> _consume;
-        private readonly Action _done;
+        private readonly Action? _done;
 
-        public FuncWrapperConsumer(Func<T, ConsumeContext<T>, Task> consume, Action done = null)
+        public FuncWrapperConsumer(Func<T, ConsumeContext<T>, Task> consume, Action? done = null)
         {
             _consume = consume;
             _done = done;

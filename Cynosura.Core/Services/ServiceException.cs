@@ -8,7 +8,7 @@ namespace Cynosura.Core.Services
     public class ServiceException : Exception
     {
         public int? ErrorCode { get; }
-        public ICollection Errors { get; }
+        public ICollection? Errors { get; }
         public ErrorSeverity Severity { get; set; } = ErrorSeverity.Error;
 
         public ServiceException(int errorCode, string message, ICollection errors) : base(message)

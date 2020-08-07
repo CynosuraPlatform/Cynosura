@@ -12,7 +12,7 @@ namespace Cynosura.Web.Infrastructure
 
         }
 
-        public BadRequestModel(string message, Exception exception = null, ICollection errors = null, int? errorCode = null)
+        public BadRequestModel(string message, Exception? exception = null, ICollection? errors = null, int? errorCode = null)
         {
             ErrorCode = errorCode;
             Message = message;
@@ -25,9 +25,9 @@ namespace Cynosura.Web.Infrastructure
         }
 
         public int? ErrorCode { get; set; }
-        public string Message { get; set; }
-        public string ExceptionMessage { get; set; }
-        public string ExceptionType { get; set; }
-        public ICollection Errors { get; set; }
+        public string? Message { get; set; }
+        public string? ExceptionMessage { get; set; }
+        public string? ExceptionType { get; set; }
+        public ICollection? Errors { get; set; }
     }
 }

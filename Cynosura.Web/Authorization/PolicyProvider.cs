@@ -14,10 +14,10 @@ namespace Cynosura.Web.Authorization
             var modules = AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(s => s.GetTypes())
                 .Where(p => type.IsAssignableFrom(p) && p.IsClass)
-                .Select(t => (IPolicyModule)Activator.CreateInstance(t));
+                .Select(t => (IPolicyModule?)Activator.CreateInstance(t));
             foreach (var module in modules)
             {
-                module.RegisterPolicies(options);
+                module?.RegisterPolicies(options);
             }
         }
     }

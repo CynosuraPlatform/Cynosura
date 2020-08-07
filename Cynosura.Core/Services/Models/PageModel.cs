@@ -12,7 +12,7 @@ namespace Cynosura.Core.Services.Models
 
         public PageModel()
         {
-
+            PageItems = new List<T>();
         }
 
         public PageModel(List<T> pageItems, int totalItems, int currentPageIndex)

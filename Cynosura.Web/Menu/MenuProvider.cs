@@ -27,8 +27,8 @@ namespace Cynosura.Web.Menu
             var modules = AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(s => s.GetTypes())
                 .Where(p => type.IsAssignableFrom(p) && p.IsClass)
-                .Select(t => (IMenuModule) (_serviceProvider.GetService(t) ?? Activator.CreateInstance(t)));
-            return modules.SelectMany(s => s.GetMenuItems());
+                .Select(t => (IMenuModule?) (_serviceProvider.GetService(t) ?? Activator.CreateInstance(t)));
+            return modules.SelectMany(s => s?.GetMenuItems());
         }
     }
 }

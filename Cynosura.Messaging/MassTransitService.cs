@@ -31,7 +31,7 @@ namespace Cynosura.Messaging
             _options = options.Value;
         }
 
-        public static IBusControl CreateBus(IServiceProvider serviceProvider, Action<IRabbitMqBusFactoryConfigurator, IServiceProvider> configureBus = null)
+        public static IBusControl CreateBus(IServiceProvider serviceProvider, Action<IRabbitMqBusFactoryConfigurator, IServiceProvider>? configureBus = null)
         {
             return Bus.Factory.CreateUsingRabbitMq(sbc =>
             {

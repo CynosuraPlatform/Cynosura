@@ -13,9 +13,9 @@ namespace Cynosura.Messaging
     public static class ServiceCollectionExtensions
     {
         public static IServiceCollection AddCynosuraMessaging(this IServiceCollection services,
-            IConfiguration configuration = null,
-            Action<IServiceCollectionConfigurator> configure = null,
-            Action<IRabbitMqBusFactoryConfigurator, IServiceProvider> configureBus = null)
+            IConfiguration? configuration = null,
+            Action<IServiceCollectionConfigurator>? configure = null,
+            Action<IRabbitMqBusFactoryConfigurator, IServiceProvider>? configureBus = null)
         {
             services.AddSingleton<IMessagingService, MassTransitService>();
             if (configuration != null)

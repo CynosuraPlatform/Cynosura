@@ -6,7 +6,7 @@ namespace Cynosura.Web.Menu
 {
     public class MenuItem
     {
-        public MenuItem(string route, string name, string cssClass = null, IEnumerable<string> roles = null)
+        public MenuItem(string route, string name, string? cssClass = null, IEnumerable<string>? roles = null)
         {
             Route = route;
             Name = name;
@@ -16,7 +16,7 @@ namespace Cynosura.Web.Menu
 
         public string Route { get; set; }
         public string Name { get; set; }
-        public string CssClass { get; set; }
-        public IEnumerable<string> Roles { get; set; }
+        public string? CssClass { get; set; }
+        public IEnumerable<string>? Roles { get; set; }
     }
 }

@@ -53,13 +53,13 @@ namespace Cynosura.Web.Infrastructure
 
     public class SimpleModelState
     {
-        public IList<ModelStateError> Errors { get; set; }
+        public IList<ModelStateError>? Errors { get; set; }
     }
 
     public class ModelStateError
     {
-        public string ErrorMessage { get; set; }
-        public string ExceptionMessage { get; set; }
-        public string ExceptionSource { get; set; }
+        public string? ErrorMessage { get; set; }
+        public string? ExceptionMessage { get; set; }
+        public string? ExceptionSource { get; set; }
     }
 }

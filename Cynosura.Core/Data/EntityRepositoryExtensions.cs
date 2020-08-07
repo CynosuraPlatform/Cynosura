@@ -52,6 +52,6 @@ namespace Cynosura.Core.Data
 
         private static DbSet<TEntity> GetDbSet<TEntity>(this IEntityRepository<TEntity> repository)
             where TEntity : class =>
-            repository.GetEntities() as DbSet<TEntity>;
+            (DbSet<TEntity>)repository.GetEntities();
     }
 }
