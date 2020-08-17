@@ -11,11 +11,17 @@ namespace Cynosura.Web.Infrastructure
     public class ServiceExceptionHandler: IExceptionHandler
     {
         private readonly IWebHostEnvironment _env;
-        public Type ExceptionType => typeof(ServiceException);
 
         public ServiceExceptionHandler(IWebHostEnvironment env)
         {
             _env = env;
+        }
+
+        public int Priority => 0;
+
+        public bool CanHandleException(Exception exception)
+        {
+            return exception is ServiceException;
         }
 
         public ObjectResult HandleException(Exception exception)

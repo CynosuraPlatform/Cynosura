@@ -9,9 +9,14 @@ namespace Cynosura.Web.Infrastructure
     public interface IExceptionHandler
     {
         /// <summary>
-        /// Target Exception type
+        /// Handler priority
         /// </summary>
-        Type ExceptionType { get; }
+        int Priority { get; }
+
+        /// <summary>
+        /// Return if handler can handle the exception
+        /// </summary>
+        bool CanHandleException(Exception exception);    
 
         /// <summary>
         /// Exception handling method
