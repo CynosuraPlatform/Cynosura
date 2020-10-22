@@ -36,7 +36,7 @@ namespace Cynosura.Messaging
             return Bus.Factory.CreateUsingRabbitMq(sbc =>
             {
                 var options = serviceProvider.GetRequiredService<IOptions<MassTransitServiceOptions>>().Value;
-                var host = sbc.Host(new Uri(options.ConnectionUrl), h =>
+                sbc.Host(new Uri(options.ConnectionUrl), h =>
                 {
                     h.Username(options.Username);
                     h.Password(options.Password);
