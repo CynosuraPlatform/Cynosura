@@ -25,7 +25,6 @@ namespace Cynosura.Messaging
             services.AddMassTransit(x =>
             {
                 configure?.Invoke(x);
-                x.UsingRabbitMq((context, cfg) => { cfg.ConfigureEndpoints(context); });
                 x.AddBus(context => MassTransitService.CreateBus(context, (context, configurator) =>
                 {
                     configureBus?.Invoke(context, configurator);
