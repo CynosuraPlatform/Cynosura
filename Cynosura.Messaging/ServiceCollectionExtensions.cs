@@ -15,7 +15,7 @@ namespace Cynosura.Messaging
         public static IServiceCollection AddCynosuraMessaging(this IServiceCollection services,
             IConfiguration? configuration = null,
             Action<IServiceCollectionBusConfigurator>? configure = null,
-            Action<IRabbitMqBusFactoryConfigurator, IServiceProvider>? configureBus = null)
+            Action<IBusRegistrationContext, IRabbitMqBusFactoryConfigurator>? configureBus = null)
         {
             services.AddSingleton<IMessagingService, MassTransitService>();
             if (configuration != null)
@@ -25,17 +25,10 @@ namespace Cynosura.Messaging
             services.AddMassTransit(x =>
             {
                 configure?.Invoke(x);
-                x.AddBus(context => MassTransitService.CreateBus(context, (configurator, sp) =>
+                x.UsingRabbitMq((context, cfg) => { cfg.ConfigureEndpoints(context); });
+                x.AddBus(context => MassTransitService.CreateBus(context, (context, configurator) =>
                 {
-                    var configurators = sp.GetServices<IConsumerConfigurator>();
-                    if (configurators != null)
-                    {
-                        foreach (var consumerConfigurator in configurators)
-                        {
-                            consumerConfigurator.Configure(configurator, sp);
-                        }
-                    }
-                    configureBus?.Invoke(configurator, sp);
+                    configureBus?.Invoke(context, configurator);
                 }));
             });
             return services;

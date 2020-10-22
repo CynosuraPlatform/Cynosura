@@ -16,33 +16,33 @@ namespace Cynosura.Messaging
     {
         private readonly ILogger<MassTransitService> _logger;
         private readonly MassTransitServiceOptions _options;
-        private readonly IServiceProvider _serviceProvider;
+        private readonly IBusRegistrationContext _context;
         private readonly IBusControl _bus;
 
         public MassTransitService(
-            IServiceProvider serviceProvider,
+            IBusRegistrationContext context,
             IBusControl bus,
             IOptions<MassTransitServiceOptions> options,
             ILogger<MassTransitService> logger)
         {
-            _serviceProvider = serviceProvider;
+            _context = context;
             _bus = bus;
             _logger = logger;
             _options = options.Value;
         }
 
-        public static IBusControl CreateBus(IServiceProvider serviceProvider, Action<IRabbitMqBusFactoryConfigurator, IServiceProvider>? configureBus = null)
+        public static IBusControl CreateBus(IBusRegistrationContext context, Action<IBusRegistrationContext, IRabbitMqBusFactoryConfigurator>? configureBus = null)
         {
             return Bus.Factory.CreateUsingRabbitMq(sbc =>
             {
-                var options = serviceProvider.GetRequiredService<IOptions<MassTransitServiceOptions>>().Value;
+                var options = context.GetRequiredService<IOptions<MassTransitServiceOptions>>().Value;
                 sbc.Host(new Uri(options.ConnectionUrl), h =>
                 {
                     h.Username(options.Username);
                     h.Password(options.Password);
                 });
 
-                configureBus?.Invoke(sbc, serviceProvider);
+                configureBus?.Invoke(context, sbc);
             });
         }
 
@@ -61,7 +61,7 @@ namespace Cynosura.Messaging
         {
             await RetryHelper.TryAsync(async () =>
             {
-                var bus = CreateBus(_serviceProvider);
+                var bus = CreateBus(_context);
                 await bus.StartAsync();
                 await bus.StopAsync();
             }, 5, TimeSpan.FromSeconds(10), _logger);

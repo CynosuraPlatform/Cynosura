@@ -28,20 +28,6 @@ namespace Cynosura.Messaging.UnitTests
             Assert.NotNull(messagingService);
         }
 
-        [Fact]
-        public void AddCynosuraMessaging_WithConsumerConfigurator()
-        {
-            var services = new ServiceCollection();
-            Setup(services);
-            var consumerConfiguratorMock = new Mock<IConsumerConfigurator>();
-            services.AddTransient(sp => consumerConfiguratorMock.Object);
-            services.AddCynosuraMessaging();
-            var provider = services.BuildServiceProvider();
-            var messagingService = provider.GetService<IMessagingService>();
-
-            consumerConfiguratorMock.Verify(m => m.Configure(It.IsNotNull<IRabbitMqBusFactoryConfigurator>(), It.IsNotNull<IServiceProvider>()));
-        }
-
         private void Setup(IServiceCollection services)
         {
             var optionsMock = new Mock<IOptions<MassTransitServiceOptions>>();
