@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-    <Version>0.2.0</Version>
+    <Version>0.3.0</Version>
     <Authors>Vassily Ivanov</Authors>
     <Company>Cynosura</Company>
     <Description>Cynosura ASP.NET</Description>
