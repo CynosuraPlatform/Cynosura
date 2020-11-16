@@ -36,6 +36,10 @@ namespace Cynosura.Messaging
             return Bus.Factory.CreateUsingRabbitMq(sbc =>
             {
                 var options = context.GetRequiredService<IOptions<MassTransitServiceOptions>>().Value;
+                if (options.ConnectionUrl == null)
+                {
+                    throw new Exception("Specify ConnectionUrl");
+                }
                 sbc.Host(new Uri(options.ConnectionUrl), h =>
                 {
                     h.Username(options.Username);

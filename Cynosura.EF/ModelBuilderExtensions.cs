@@ -18,7 +18,7 @@ namespace Cynosura.EF
                 .SelectMany(s => s.GetTypes())
                 .Select(t => (t, i: t.GetInterfaces().FirstOrDefault(i => i.Name.Equals(typeof(IEntityTypeConfiguration<>).Name, StringComparison.Ordinal))))
                 .Where(it => it.i != null)
-                .Select(it => (et: it.i.GetGenericArguments()[0], cfgObj: Activator.CreateInstance(it.t)))
+                .Select(it => (et: it.i!.GetGenericArguments()[0], cfgObj: Activator.CreateInstance(it.t)))
                 .Select(it => applyConfigurationMethodInfo.MakeGenericMethod(it.et).Invoke(modelBuilder, new[] { it.cfgObj }))
                 .ToList();
         }
