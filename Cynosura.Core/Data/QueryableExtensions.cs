@@ -16,7 +16,7 @@ namespace Cynosura.Core.Data
             return entityRepository.ToListAsync(queryable, cancellationToken);
         }
 
-        public static Task<T> FirstOrDefaultAsync<T>(this IQueryable<T> queryable, IEntityRepository<T> entityRepository, CancellationToken cancellationToken = default)
+        public static Task<T?> FirstOrDefaultAsync<T>(this IQueryable<T> queryable, IEntityRepository<T> entityRepository, CancellationToken cancellationToken = default)
         {
             return entityRepository.FirstOrDefaultAsync(queryable, cancellationToken);
         }
@@ -26,7 +26,7 @@ namespace Cynosura.Core.Data
             return entityRepository.FirstAsync(queryable, cancellationToken);
         }
 
-        public static Task<T> SingleOrDefaultAsync<T>(this IQueryable<T> queryable, IEntityRepository<T> entityRepository, CancellationToken cancellationToken = default)
+        public static Task<T?> SingleOrDefaultAsync<T>(this IQueryable<T> queryable, IEntityRepository<T> entityRepository, CancellationToken cancellationToken = default)
         {
             return entityRepository.SingleOrDefaultAsync(queryable, cancellationToken);
         }

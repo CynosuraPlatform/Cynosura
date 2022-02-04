@@ -10,7 +10,7 @@ namespace Cynosura.Core.Data
 {
     public static class EntityRepositoryExtensions
     {
-        public static Task<TEntity> FirstOrDefaultAsync<TEntity>(this IEntityRepository<TEntity> repository,
+        public static Task<TEntity?> FirstOrDefaultAsync<TEntity>(this IEntityRepository<TEntity> repository,
             Expression<Func<TEntity, bool>> predicate,
             CancellationToken cancellationToken = default) =>
             repository.GetEntities().FirstOrDefaultAsync(predicate, cancellationToken);
@@ -20,7 +20,7 @@ namespace Cynosura.Core.Data
             CancellationToken cancellationToken = default) =>
             repository.GetEntities().FirstAsync(predicate, cancellationToken);
 
-        public static Task<TEntity> SingleOrDefaultAsync<TEntity>(this IEntityRepository<TEntity> repository,
+        public static Task<TEntity?> SingleOrDefaultAsync<TEntity>(this IEntityRepository<TEntity> repository,
             Expression<Func<TEntity, bool>> predicate,
             CancellationToken cancellationToken = default) =>
             repository.GetEntities().SingleOrDefaultAsync(predicate, cancellationToken);
@@ -40,12 +40,12 @@ namespace Cynosura.Core.Data
             CancellationToken cancellationToken = default) =>
             repository.GetEntities().CountAsync(predicate, cancellationToken);
 
-        public static ValueTask<TEntity> FindAsync<TEntity>(this IEntityRepository<TEntity> repository,
+        public static ValueTask<TEntity?> FindAsync<TEntity>(this IEntityRepository<TEntity> repository,
             params object[] keys)
             where TEntity : class =>
             repository.GetDbSet().FindAsync(keys);
 
-        public static ValueTask<TEntity> FindAsync<TEntity>(this IEntityRepository<TEntity> repository,
+        public static ValueTask<TEntity?> FindAsync<TEntity>(this IEntityRepository<TEntity> repository,
             object[] keys, CancellationToken cancellationToken)
             where TEntity : class =>
             repository.GetDbSet().FindAsync(keys, cancellationToken);

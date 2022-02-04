@@ -39,7 +39,7 @@ namespace Cynosura.Web.Infrastructure
                 entry => entry.Key,
                 entry => new SimpleModelState()
                 {
-                    Errors = entry.Value.Errors
+                    Errors = entry.Value?.Errors
                     .Select(error => new ModelStateError()
                     {
                         ErrorMessage = error.ErrorMessage,

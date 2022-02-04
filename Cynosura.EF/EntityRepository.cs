@@ -25,12 +25,12 @@ namespace Cynosura.EF
             return Entities;
         }
 
-        public virtual async Task<TEntity> GetByKeyAsync(params object[] keys)
+        public virtual async Task<TEntity?> GetByKeyAsync(params object[] keys)
         {
             return await Entities.FindAsync(keys);
         }
 
-        public virtual async Task<TEntity> GetByKeyAsync(object[] keys, CancellationToken cancellationToken)
+        public virtual async Task<TEntity?> GetByKeyAsync(object[] keys, CancellationToken cancellationToken)
         {
             return await Entities.FindAsync(keys, cancellationToken);
         }
@@ -71,7 +71,7 @@ namespace Cynosura.EF
             return queryable.ToListAsync(cancellationToken);
         }
 
-        public Task<TEntity> FirstOrDefaultAsync(IQueryable<TEntity> queryable, CancellationToken cancellationToken = default)
+        public Task<TEntity?> FirstOrDefaultAsync(IQueryable<TEntity> queryable, CancellationToken cancellationToken = default)
         {
             return queryable.FirstOrDefaultAsync(cancellationToken);
         }
@@ -81,7 +81,7 @@ namespace Cynosura.EF
             return queryable.FirstAsync(cancellationToken);
         }
 
-        public Task<TEntity> SingleOrDefaultAsync(IQueryable<TEntity> queryable, CancellationToken cancellationToken = default)
+        public Task<TEntity?> SingleOrDefaultAsync(IQueryable<TEntity> queryable, CancellationToken cancellationToken = default)
         {
             return queryable.SingleOrDefaultAsync(cancellationToken);
         }
