@@ -34,6 +34,11 @@ namespace Cynosura.Core.Services
             ErrorCode = null;
             Errors = errors;
         }
+
+        public ServiceException(string message, Exception innerException) : base(message, innerException)
+        {
+
+        }
     }
 
     public enum ErrorSeverity
