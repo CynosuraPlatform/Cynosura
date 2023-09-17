@@ -16,7 +16,7 @@ namespace Cynosura.Messaging
             IConfiguration? configuration = null,
             Action<IServiceCollectionBusConfigurator>? configure = null)
         {
-            services.AddSingleton<IMessagingService, MassTransitService>();
+            services.AddTransient<IMessagingService, MassTransitService>();
             if (configuration != null)
             {
                 services.Configure<MassTransitServiceOptions>(configuration.GetSection("MassTransit"));
