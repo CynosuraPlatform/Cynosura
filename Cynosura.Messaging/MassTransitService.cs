@@ -13,15 +13,12 @@ namespace Cynosura.Messaging
     {
         private readonly MassTransitServiceOptions _options;
         private readonly IBusControl _bus;
-        private readonly IScopedClientFactory _scopedClientFactory;
 
         public MassTransitService(
             IBusControl bus,
-            IScopedClientFactory scopedClientFactory,
             IOptions<MassTransitServiceOptions> options)
         {
             _bus = bus;
-            _scopedClientFactory = scopedClientFactory;
             _options = options.Value;
         }
 
@@ -58,15 +55,6 @@ namespace Cynosura.Messaging
         {
             var endpoint = await GetEndpoint(queue);
             await endpoint.Send(message);
-        }
-
-        public async Task<TResponse> RequestAsync<TRequest, TResponse>(string queue, TRequest message)
-            where TRequest : class
-            where TResponse : class
-        {
-            var requestClient = _scopedClientFactory.CreateRequestClient<TRequest>(new Uri(GetAddress(queue)));
-            var response = await requestClient.GetResponse<TResponse>(message);
-            return response.Message;
         }
     }
 }

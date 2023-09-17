@@ -12,8 +12,5 @@ namespace Cynosura.Core.Messaging
         Task PublishAsync<T>(T message) where T : class;
         Task PublishAsync<T>(T message, TimeSpan timeToLive) where T : class;
         Task SendAsync<T>(string queue, T message) where T : class;
-        Task<TResponse> RequestAsync<TRequest, TResponse>(string queue, TRequest message) 
-            where TRequest : class 
-            where TResponse : class;
     }
 }
