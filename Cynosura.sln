@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28803.202
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cynosura.Core", "Cynosura.Core\Cynosura.Core.csproj", "{13170EC7-0B5A-4297-9A2C-46829E795369}"
 EndProject
@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		azure-pipelines.yml = azure-pipelines.yml
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cynosura.IdentityServer", "Cynosura.IdentityServer\Cynosura.IdentityServer.csproj", "{7002AA7A-9FD3-4DC2-9DAE-345AE67C61A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,6 +60,10 @@ Global
 		{EC926672-0E4C-4F47-ADEA-704602777A00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC926672-0E4C-4F47-ADEA-704602777A00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC926672-0E4C-4F47-ADEA-704602777A00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7002AA7A-9FD3-4DC2-9DAE-345AE67C61A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7002AA7A-9FD3-4DC2-9DAE-345AE67C61A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7002AA7A-9FD3-4DC2-9DAE-345AE67C61A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7002AA7A-9FD3-4DC2-9DAE-345AE67C61A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
