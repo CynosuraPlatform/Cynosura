@@ -21,7 +21,10 @@ namespace Cynosura.Messaging.UnitTests
         {
             var services = new ServiceCollection();
             Setup(services);
-            services.AddCynosuraMessaging();
+            services.AddCynosuraMessaging(null, c =>
+            {
+                c.AddInMemoryBus();
+            });
             var provider = services.BuildServiceProvider();
             var messagingService = provider.GetService<IMessagingService>();
 

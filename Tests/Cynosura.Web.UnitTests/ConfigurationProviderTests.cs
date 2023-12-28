@@ -8,7 +8,7 @@ namespace Cynosura.Web.UnitTests
 {
     public class ConfigurationProviderTests
     {
-        //[Fact]
+        [Fact]
         public void ConfigureSuccess()
         {
             var provider = new ConfigurationProvider<TestConfig>();

@@ -1,7 +1,6 @@
 name: $(version)-b$(BuildID)
 
-trigger:
-- development
+trigger: none
 
 pr: none
 
