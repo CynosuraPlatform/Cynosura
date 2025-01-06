@@ -1,8 +1,10 @@
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 
+using Duende.IdentityServer.Extensions;
 using Duende.IdentityServer.Models;
 using Duende.IdentityServer.Validation;
+using System.Text.RegularExpressions;
 
 namespace Cynosura.IdentityServer;
 
@@ -25,7 +27,7 @@ internal sealed class RelativeRedirectUriValidator : StrictRedirectUriValidator
         }
         else
         {
-            return base.IsRedirectUriValidAsync(requestedUri, client);
+            return Task.FromResult(CompareUrisWithWildcard(client.RedirectUris, requestedUri));
         }
     }
 
@@ -37,8 +39,21 @@ internal sealed class RelativeRedirectUriValidator : StrictRedirectUriValidator
         }
         else
         {
-            return base.IsPostLogoutRedirectUriValidAsync(requestedUri, client);
+            return Task.FromResult(CompareUrisWithWildcard(client.PostLogoutRedirectUris, requestedUri));
         }
+    }
+
+    private bool CompareUrisWithWildcard(IEnumerable<string> uris, string requestedUri)
+    {
+        if (IEnumerableExtensions.IsNullOrEmpty(uris)) return false;
+
+        return uris.Any(u => CompareUriWithWildcard(u, requestedUri));
+    }
+
+    private bool CompareUriWithWildcard(string uri, string requestedUri)
+    {
+        var uriRegex = "^" + Regex.Escape(uri).Replace("\\*", ".*") + "$";
+        return Regex.IsMatch(requestedUri, uriRegex);
     }
 
     private static bool IsLocalSPA(Client client) =>

@@ -5,6 +5,7 @@ using Duende.IdentityServer.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using System.Text.RegularExpressions;
 
 namespace Cynosura.IdentityServer;
 
@@ -64,18 +65,44 @@ internal sealed class ConfigureClients : IConfigureOptions<ApiAuthorizationOptio
         }
     }
 
+    private static string FindWildcardReplacement(params string[] uris)
+    {
+        string replacement;
+        for (int i = 0; ; i++)
+        {
+            replacement = "w" + i;
+            if (uris.All(u => !u.Contains(replacement)))
+            {
+                break;
+            }
+        }
+        return replacement;
+    }
+
+    private static string ReplaceWildcard(string uri, string replacement)
+    {
+        if (uri == null)
+        {
+            return null;
+        }
+        return Regex.Replace(uri, "^(https?://)\\*(\\.[a-z0-9\\-]+\\.[a-z]+)", $"$1{replacement}$2", RegexOptions.IgnoreCase);
+    }
+
     private static Client GetSPA(string name, ClientDefinition definition)
     {
-        if (definition.RedirectUri == null ||
-            !Uri.TryCreate(definition.RedirectUri, UriKind.Absolute, out var redirectUri))
+        var wildcardReplacement = FindWildcardReplacement(definition.RedirectUri, definition.LogoutUri);
+        var redirectUriWithoutWildcard = ReplaceWildcard(definition.RedirectUri, wildcardReplacement);
+        if (redirectUriWithoutWildcard == null ||
+            !Uri.TryCreate(redirectUriWithoutWildcard, UriKind.Absolute, out var redirectUri))
         {
             throw new InvalidOperationException($"The redirect uri " +
                 $"'{definition.RedirectUri}' for '{name}' is invalid. " +
                 $"The redirect URI must be an absolute url.");
         }
 
-        if (definition.LogoutUri == null ||
-            !Uri.TryCreate(definition.LogoutUri, UriKind.Absolute, out var postLogouturi))
+        var logoutUriWithoutWildcard = ReplaceWildcard(definition.LogoutUri, wildcardReplacement);
+        if (logoutUriWithoutWildcard == null ||
+            !Uri.TryCreate(logoutUriWithoutWildcard, UriKind.Absolute, out var postLogouturi))
         {
             throw new InvalidOperationException($"The logout uri " +
                 $"'{definition.LogoutUri}' for '{name}' is invalid. " +
@@ -94,7 +121,7 @@ internal sealed class ConfigureClients : IConfigureOptions<ApiAuthorizationOptio
         var client = ClientBuilder.SPA(name)
             .WithRedirectUri(definition.RedirectUri)
             .WithLogoutRedirectUri(definition.LogoutUri)
-            .WithAllowedOrigins(redirectUri.GetLeftPart(UriPartial.Authority))
+            .WithAllowedOrigins(redirectUri.GetLeftPart(UriPartial.Authority).Replace(wildcardReplacement, "*"))
             .FromConfiguration();
 
         return client.Build();
