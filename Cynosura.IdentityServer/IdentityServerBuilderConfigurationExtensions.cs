@@ -4,6 +4,7 @@
 using System.Linq;
 using Cynosura.IdentityServer;
 using Cynosura.IdentityServer.Configuration;
+using Cynosura.IdentityServer.Extensions;
 using Duende.IdentityServer.Configuration;
 using Duende.IdentityServer.EntityFramework.Interfaces;
 using Duende.IdentityServer.Hosting;
@@ -276,6 +277,7 @@ public static class IdentityServerBuilderConfigurationExtensions
         builder.Services.TryAddEnumerable(ServiceDescriptor.Transient<IConfigureOptions<IdentityServerOptions>, AspNetConventionsConfigureOptions>());
         builder.Services.TryAddSingleton<IAbsoluteUrlFactory, AbsoluteUrlFactory>();
         builder.Services.AddSingleton<IRedirectUriValidator, RelativeRedirectUriValidator>();
+        builder.Services.AddSingleton<IClientConfigurationValidator, CustomClientConfigurationValidator>();
         builder.Services.AddSingleton<IClientRequestParametersProvider, DefaultClientRequestParametersProvider>();
         ReplaceEndSessionEndpoint(builder);
 
