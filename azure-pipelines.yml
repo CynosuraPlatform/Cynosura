@@ -1,6 +1,7 @@
-name: $(version)-b$(BuildID)
-
-trigger: none
+trigger: 
+  tags:
+    include:
+    - '*'
 
 pr: none
 
@@ -18,7 +19,6 @@ steps:
     command: 'pack'
     packagesToPack: '**/*.csproj'
     versioningScheme: 'off'
-    buildProperties: 'PackageVersion=$(Build.BuildNumber)'
 
 - task: NuGetToolInstaller@1
   inputs:
